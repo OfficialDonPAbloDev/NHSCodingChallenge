@@ -1,12 +1,13 @@
 ﻿using MediatR;
 using PatientApi.Domain.DTOs;
+using PatientApi.Mappers;
 using PatientApi.Queries;
 using PatientApi.Repositories;
 
 namespace PatientApi.Handlers
 {
 
-    public class GetPatientSummaryByIdQueryHandler : IRequestHandler<GetPatientSummaryByIdQuery, PatientSummaryDto>
+    public class GetPatientSummaryByIdQueryHandler : IRequestHandler<GetPatientSummaryByIdQuery, PatientSummaryDto?>
     {
         private readonly IPatientRepository _patientRepository;
 
@@ -15,17 +16,16 @@ namespace PatientApi.Handlers
             _patientRepository = patientRepository;
         }
 
-        public Task<PatientSummaryDto> Handle(GetPatientSummaryByIdQuery request, CancellationToken cancellationToken)
+        public async Task<PatientSummaryDto?> Handle(GetPatientSummaryByIdQuery request, CancellationToken cancellationToken)
         {
-            var result = new PatientSummaryDto 
-            { 
-                Title = Models.Titles.Mr, 
-                Name = "Jimmy Johnson", 
-                NHSNumber = "100 200 3000", 
-                DOB = new DateTime(1985, 1, 1),
-                GPPractice = "Woodlands Medical Centre"
-            };
-            return Task.FromResult(result);
+            if(cancellationToken.IsCancellationRequested)
+            {
+                return null;
+            }
+
+            var dbResult = await _patientRepository.GetByIdAsync(request.Id);
+
+            return dbResult?.ToDto();
         }
     }
 }

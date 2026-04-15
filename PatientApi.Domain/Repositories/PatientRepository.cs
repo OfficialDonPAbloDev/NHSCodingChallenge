@@ -23,7 +23,7 @@ namespace PatientApi.Domain.Repositories
                 FirstName = "Pammy",
                 Surname = "Peasgood",
                 DateOfBirth = new DateTime(1985, 2, 2),
-                GPPractice = "Woodlands Medical Centre"
+                GPPractice = "Highlands Medical Centre"
             },
             new Patient
             {
@@ -32,7 +32,7 @@ namespace PatientApi.Domain.Repositories
                 FirstName = "Terry",
                 Surname = "Thompson",
                 DateOfBirth = new DateTime(1985, 3, 3),
-                GPPractice = "Woodlands Medical Centre"
+                GPPractice = "Lowlands Medical Centre"
             },
             new Patient
             {
@@ -41,7 +41,7 @@ namespace PatientApi.Domain.Repositories
                 FirstName = "Harry",
                 Surname = "Holmes",
                 DateOfBirth = new DateTime(1985, 4, 4),
-                GPPractice = "Woodlands Medical Centre"
+                GPPractice = "Eastlands Medical Centre"
             },
             new Patient
             {
@@ -50,7 +50,7 @@ namespace PatientApi.Domain.Repositories
                 FirstName = "Barry",
                 Surname = "Baldwin",
                 DateOfBirth = new DateTime(1985, 5, 5),
-                GPPractice = "Woodlands Medical Centre"
+                GPPractice = "Badlands Medical Centre"
             }
         ];
 

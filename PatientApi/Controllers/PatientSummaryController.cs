@@ -1,26 +1,11 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using PatientApi.Domain.DTOs;
-using PatientApi.Handlers;
 using PatientApi.Queries;
 
 namespace PatientApi.Controllers
 {
-    //[AllowAnonymous]
-    //public class PatientSummaryController : Controller
-    //{
-    //    [HttpGet("{id:int}")]
-    //    [ProducesResponseType(StatusCodes.Status200OK)]
-    //    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    //    public async Task<IActionResult> GetById(int id)
-    //    {
-    //        return Ok("Ok");
-    //    }
-    //}
-
-
-
     [Route("api/[controller]")]
     [ApiController]
     public class PatientSummaryController : ControllerBase
@@ -36,7 +21,16 @@ namespace PatientApi.Controllers
         public async Task<ActionResult<PatientSummaryDto>> GetPatientSummary(int id)
         {
             var result = await _mediator.Send(new GetPatientSummaryByIdQuery(id));
-            return result is not null ? Ok(result) : NotFound();
+            if (result is not null)
+            {
+                //Extract user details from token in header
+
+                //Dispatch message to event hub/message queue for auditing handler to log record accessed by user
+                
+                return Ok(result);
+            }
+
+            return NotFound();
         }
     }
 
