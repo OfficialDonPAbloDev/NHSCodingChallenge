@@ -37,24 +37,6 @@ namespace PatientApi.Tests.Controllers
             ok.Value.Should().BeSameAs(dto);
         }
 
-        [Theory]
-        [InlineData(0)]
-        [InlineData(-1)]
-        public async Task GetPatientSummary_WhenPassedInParameterIsNegativeValueOrZero_ReturnsBadRequestProblemDetails(int idParam)
-        {
-            _mediator
-                .Setup(m => m.Send(It.IsAny<GetPatientSummaryByIdQuery>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync((PatientSummaryDto?)null);
-            var sut = new PatientSummaryController(_mediator.Object);
-
-            var result = await sut.GetPatientSummary(idParam, CancellationToken.None);
-
-            var objectResult = result.Result.Should().BeOfType<ObjectResult>().Subject;
-            objectResult.StatusCode.Should().Be(StatusCodes.Status400BadRequest);
-            var problem = objectResult.Value.Should().BeOfType<ProblemDetails>().Subject;
-            problem.Title.Should().Be("Invalid id");
-        }
-
         [Fact]
         public async Task GetPatientSummary_WhenNoRecordExists_ReturnsNotFoundProblemDetails()
         {

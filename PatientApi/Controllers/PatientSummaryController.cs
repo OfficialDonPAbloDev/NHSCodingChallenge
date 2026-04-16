@@ -17,20 +17,11 @@ namespace PatientApi.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int:min(1)}")]
         [ProducesResponseType(typeof(PatientSummaryDto), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         public async Task<ActionResult<PatientSummaryDto>> GetPatientSummary(int id, CancellationToken cancellationToken)
         {
-            if (id <= 0)
-            {
-                return Problem(
-                    statusCode: StatusCodes.Status400BadRequest,
-                    title: "Invalid id",
-                    detail: "'id' must be a positive integer.");
-            }
-
             var result = await _mediator.Send(new GetPatientSummaryByIdQuery(id), cancellationToken);
 
             if (result is not null)
