@@ -50,17 +50,15 @@ namespace PatientApi.Tests.Handlers
         }
 
         [Fact]
-        public void HandleWhenCancellationRequestedThrowsCancelledExceptionAndDoesNotQueryRepository()
+        public async Task HandleWhenCancellationRequestedThrowsCancelledExceptionAndDoesNotQueryRepository()
         {
             var sut = new GetPatientSummaryByIdQueryHandler(_repo.Object);
             using var cts = new CancellationTokenSource();
             cts.Cancel();
 
-            _ = Assert.ThrowsAsync<OperationCanceledException>(async () =>
-            {
-                GetPatientSummaryByIdQuery request = new GetPatientSummaryByIdQuery(1);
-                await sut.Handle(request, cts.Token);
-            });
+            await Assert.ThrowsAsync<OperationCanceledException>(() =>
+                sut.Handle(new GetPatientSummaryByIdQuery(1), cts.Token));
+
             _repo.Verify(r => r.GetByIdAsync(It.IsAny<int>()), Times.Never);
         }
     }
