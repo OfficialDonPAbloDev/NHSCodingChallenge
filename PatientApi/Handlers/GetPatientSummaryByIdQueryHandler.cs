@@ -18,10 +18,7 @@ namespace PatientApi.Handlers
 
         public async Task<PatientSummaryDto?> Handle(GetPatientSummaryByIdQuery request, CancellationToken cancellationToken)
         {
-            if(cancellationToken.IsCancellationRequested)
-            {
-                return null;
-            }
+            cancellationToken.ThrowIfCancellationRequested();
 
             var dbResult = await _patientRepository.GetByIdAsync(request.Id);
 

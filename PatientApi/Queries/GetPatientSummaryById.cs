@@ -3,5 +3,5 @@ using PatientApi.Domain.DTOs;
 
 namespace PatientApi.Queries
 {
-    public record GetPatientSummaryByIdQuery(int Id) : IRequest<PatientSummaryDto>;
+    public record GetPatientSummaryByIdQuery(int Id) : IRequest<PatientSummaryDto?>;
 }

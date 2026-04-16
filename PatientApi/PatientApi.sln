@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatientApi", "PatientApi.cs
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PatientApi.Domain", "..\PatientApi.Domain\PatientApi.Domain.csproj", "{36DF1771-EE7F-4B5D-AA03-904CD0F55CAC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatientApi.Tests", "..\PatientApi.Tests\PatientApi.Tests.csproj", "{A712727A-75FB-43DD-84DB-77D3257FBBF8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{36DF1771-EE7F-4B5D-AA03-904CD0F55CAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36DF1771-EE7F-4B5D-AA03-904CD0F55CAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36DF1771-EE7F-4B5D-AA03-904CD0F55CAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A712727A-75FB-43DD-84DB-77D3257FBBF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A712727A-75FB-43DD-84DB-77D3257FBBF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A712727A-75FB-43DD-84DB-77D3257FBBF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A712727A-75FB-43DD-84DB-77D3257FBBF8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

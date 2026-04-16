@@ -18,9 +18,18 @@ namespace PatientApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<PatientSummaryDto>> GetPatientSummary(int id)
+        [ProducesResponseType(typeof(PatientSummaryDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+
+        public async Task<ActionResult<PatientSummaryDto>> GetPatientSummary(int id, CancellationToken cancellationToken)
         {
-            var result = await _mediator.Send(new GetPatientSummaryByIdQuery(id));
+            if(id <= 0)
+            {
+                return BadRequest("'Id' must be a positive integer");
+            }
+
+            var result = await _mediator.Send(new GetPatientSummaryByIdQuery(id),cancellationToken);
+
             if (result is not null)
             {
                 //Extract user details from token in header
@@ -30,7 +39,7 @@ namespace PatientApi.Controllers
                 return Ok(result);
             }
 
-            return NotFound();
+            return NotFound($"Patient with id of {id} was not found in the system.");
         }
     }
 

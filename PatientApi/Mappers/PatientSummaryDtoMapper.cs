@@ -7,19 +7,14 @@ namespace PatientApi.Mappers
     {
         public static PatientSummaryDto? ToDto(this Patient patient)
         {
-            if (patient != null)
+            return new PatientSummaryDto
             {
-                return new PatientSummaryDto
-                {
-                    Name = $"{patient.FirstName} {patient.Surname}",
-                    NHSNumber = patient.NHSNumber,
-                    GPPractice = patient.GPPractice,
-                    DOB = patient.DateOfBirth,
-                    Title = patient.Title
-                };
-            }
-
-            return null;
+                Name = $"{patient.FirstName} {patient.Surname}",
+                NHSNumber = patient.NHSNumber,
+                GPPractice = patient.GPPractice,
+                DOB = patient.DateOfBirth,
+                Title = patient.Title
+            };
         }
     }
 }
