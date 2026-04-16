@@ -63,11 +63,9 @@ namespace PatientApi.Tests.Controllers
 
             var result = await sut.GetPatientSummary(notPresentId, CancellationToken.None);
 
-            if(result != null && result.Result != null)
-            {
-                ((ObjectResult)result.Result).StatusCode.Should().Be(StatusCodes.Status404NotFound);
-                ((NotFoundObjectResult)result.Result).Value?.Equals($"Patient with id of {notPresentId} was not found in the system.").Should().BeTrue();
-            }
+            var notFound = result.Result.Should().BeOfType<NotFoundObjectResult>().Subject;
+            notFound.Value.Should().Be($"Patient with id of {notPresentId} was not found in the system.");
+
         }
 
         [Fact]
