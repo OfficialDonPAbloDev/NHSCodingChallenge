@@ -40,7 +40,7 @@ namespace PatientApi.Tests.Controllers
         [Theory]
         [InlineData(0)]
         [InlineData(-1)]
-        public async Task GetPatientSummary_WhenPassedInParameterIsNegativeValueOrZero_ReturnsBadRequest(int idParam)
+        public async Task GetPatientSummary_WhenPassedInParameterIsNegativeValueOrZero_ReturnsBadRequestProblemDetails(int idParam)
         {
             _mediator
                 .Setup(m => m.Send(It.IsAny<GetPatientSummaryByIdQuery>(), It.IsAny<CancellationToken>()))
@@ -49,11 +49,14 @@ namespace PatientApi.Tests.Controllers
 
             var result = await sut.GetPatientSummary(idParam, CancellationToken.None);
 
-            result.Result.Should().BeOfType<BadRequestObjectResult>();
+            var objectResult = result.Result.Should().BeOfType<ObjectResult>().Subject;
+            objectResult.StatusCode.Should().Be(StatusCodes.Status400BadRequest);
+            var problem = objectResult.Value.Should().BeOfType<ProblemDetails>().Subject;
+            problem.Title.Should().Be("Invalid id");
         }
 
         [Fact]
-        public async Task GetPatientSummary_WhenNoRecordExists_ReturnsNotFound()
+        public async Task GetPatientSummary_WhenNoRecordExists_ReturnsNotFoundProblemDetails()
         {
             var notPresentId = 404;
             _mediator
@@ -63,9 +66,11 @@ namespace PatientApi.Tests.Controllers
 
             var result = await sut.GetPatientSummary(notPresentId, CancellationToken.None);
 
-            var notFound = result.Result.Should().BeOfType<NotFoundObjectResult>().Subject;
-            notFound.Value.Should().Be($"Patient with id of {notPresentId} was not found in the system.");
-
+            var objectResult = result.Result.Should().BeOfType<ObjectResult>().Subject;
+            objectResult.StatusCode.Should().Be(StatusCodes.Status404NotFound);
+            var problem = objectResult.Value.Should().BeOfType<ProblemDetails>().Subject;
+            problem.Title.Should().Be("Patient not found");
+            problem.Detail.Should().Contain(notPresentId.ToString());
         }
 
         [Fact]
