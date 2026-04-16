@@ -23,8 +23,7 @@ namespace PatientApi.Tests.Mappers
 
             var dto = patient.ToDto();
 
-            dto.Should().NotBeNull();
-            dto!.NHSNumber.Should().Be("123 456 7890");
+            dto.NHSNumber.Should().Be("123 456 7890");
             dto.Title.Should().Be(Titles.Mr);
             dto.Name.Should().Be("Mickey Mouse");
             dto.DOB.Should().Be(new DateTime(1815, 12, 10));
@@ -44,7 +43,7 @@ namespace PatientApi.Tests.Mappers
 
             var dto = patient.ToDto();
 
-            dto!.GPPractice.Should().BeNull();
+            dto.GPPractice.Should().BeNull();
         }
     }
 }

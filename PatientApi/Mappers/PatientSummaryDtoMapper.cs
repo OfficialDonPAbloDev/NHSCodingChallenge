@@ -5,7 +5,7 @@ namespace PatientApi.Mappers
 {
     public static class PatientSummaryDtoMapper
     {
-        public static PatientSummaryDto? ToDto(this Patient patient)
+        public static PatientSummaryDto ToDto(this Patient patient)
         {
             return new PatientSummaryDto
             {
