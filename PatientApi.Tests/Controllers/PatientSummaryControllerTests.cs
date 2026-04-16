@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Moq;
 using PatientApi.Controllers;
 using PatientApi.Domain.DTOs;
-using PatientApi.Models;
+using PatientApi.Domain.Models;
 using PatientApi.Queries;
 
 namespace PatientApi.Tests.Controllers

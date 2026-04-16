@@ -2,9 +2,9 @@ using FluentAssertions;
 using Moq;
 using PatientApi.Domain.Entities;
 using PatientApi.Handlers;
-using PatientApi.Models;
+using PatientApi.Domain.Models;
+using PatientApi.Domain.Repositories;
 using PatientApi.Queries;
-using PatientApi.Repositories;
 
 namespace PatientApi.Tests.Handlers
 {

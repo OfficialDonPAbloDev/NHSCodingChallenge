@@ -1,7 +1,7 @@
 using FluentAssertions;
 using PatientApi.Domain.Entities;
 using PatientApi.Mappers;
-using PatientApi.Models;
+using PatientApi.Domain.Models;
 
 namespace PatientApi.Tests.Mappers
 {

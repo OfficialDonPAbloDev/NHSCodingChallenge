@@ -1,5 +1,4 @@
 ﻿using PatientApi.Domain.Entities;
-using PatientApi.Repositories;
 
 namespace PatientApi.Domain.Repositories
 {

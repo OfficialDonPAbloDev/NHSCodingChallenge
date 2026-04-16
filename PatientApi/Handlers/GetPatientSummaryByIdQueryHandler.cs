@@ -2,7 +2,7 @@
 using PatientApi.Domain.DTOs;
 using PatientApi.Mappers;
 using PatientApi.Queries;
-using PatientApi.Repositories;
+using PatientApi.Domain.Repositories;
 
 namespace PatientApi.Handlers
 {

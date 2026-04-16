@@ -1,5 +1,4 @@
 using PatientApi.Domain.Repositories;
-using PatientApi.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 

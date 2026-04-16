@@ -1,6 +1,6 @@
 ﻿using PatientApi.Domain.Entities;
 
-namespace PatientApi.Repositories
+namespace PatientApi.Domain.Repositories
 {
     public interface IPatientRepository
     {

@@ -1,4 +1,4 @@
-﻿using PatientApi.Models;
+﻿using PatientApi.Domain.Models;
 
 namespace PatientApi.Domain.Entities
 {

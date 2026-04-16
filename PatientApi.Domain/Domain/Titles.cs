@@ -1,4 +1,4 @@
-﻿namespace PatientApi.Models
+﻿namespace PatientApi.Domain.Models
 {
     public enum Titles
     {
